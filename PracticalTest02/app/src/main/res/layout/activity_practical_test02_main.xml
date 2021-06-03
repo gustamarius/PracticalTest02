@@ -17,7 +17,7 @@
         android:text="Pokemon name" />
 
     <EditText
-        android:id="@+id/editTextViewServerPort"
+        android:id="@+id/editTextViewPokemon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
