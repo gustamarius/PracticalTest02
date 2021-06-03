@@ -90,11 +90,11 @@ public class CommunicationThread extends Thread {
                 res_types = res_types.concat(type+",");
             }
 
-            printWriter.println(res_abilities+" | "+res_types);
+            printWriter.println(res_abilities+"."+res_types);
             printWriter.flush();
 
 //            JSONArray abilities = reader.getJSONArray("abilities").;
-            Log.e(Constants.TAG,res_abilities+"|"+res_types );
+            Log.e(Constants.TAG,res_abilities+"."+res_types );
 
         } catch (IOException | JSONException e) {
             e.printStackTrace();

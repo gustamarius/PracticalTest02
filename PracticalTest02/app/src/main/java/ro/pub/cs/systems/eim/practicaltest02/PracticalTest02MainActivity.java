@@ -11,18 +11,37 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.Headers;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+import static java.lang.Integer.min;
+
 public class PracticalTest02MainActivity extends AppCompatActivity {
 
     private EditText editTextViewPokemon = null;
     private Button buttonSubmit = null;
+
+    private Button top20 = null;
 
     private ImageView imageView = null;
 
     private TextView textViewAbilities = null;
     private TextView textViewTypes = null;
 
+    private TextView textView3 = null;
+
     private ServerThread serverThread = null;
     private ClientThread clientThread = null;
+    private TopThread topThread = null;
 
     private SubmitButtonClickListener submitButtonClickListener = new SubmitButtonClickListener();
     private class SubmitButtonClickListener implements Button.OnClickListener {
@@ -52,6 +71,16 @@ public class PracticalTest02MainActivity extends AppCompatActivity {
         }
     }
 
+    private Top20Button top20ClickListener = new Top20Button();
+    private class Top20Button implements Button.OnClickListener {
+        @Override
+        public void onClick(View view) {
+
+            topThread = new TopThread(textView3);
+            topThread.start();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +99,13 @@ public class PracticalTest02MainActivity extends AppCompatActivity {
         editTextViewPokemon = (EditText)findViewById(R.id.editTextViewPokemon);
         buttonSubmit = (Button)findViewById(R.id.buttonSubmit);
         buttonSubmit.setOnClickListener(submitButtonClickListener);
+
+        textView3 = findViewById(R.id.textView3);
+
+        top20 = (Button)findViewById(R.id.button);
+        top20.setOnClickListener(top20ClickListener);
+
+        imageView = (ImageView)findViewById(R.id.imageView);
 
 
 

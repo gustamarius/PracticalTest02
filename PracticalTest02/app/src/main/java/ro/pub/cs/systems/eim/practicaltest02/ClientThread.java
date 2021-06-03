@@ -1,13 +1,17 @@
 package ro.pub.cs.systems.eim.practicaltest02;
 
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 public class ClientThread extends Thread {
 
@@ -45,23 +49,26 @@ public class ClientThread extends Thread {
             printWriter.flush();
             String information;
             while ((information = bufferedReader.readLine()) != null) {
-
-                final String abilities = information.split(" | ")[0];
+                final String abilities = information.split("\\.")[0];
                 Log.e(Constants.TAG, abilities);
-                final String types = information.split("|")[1];
+                textViewAbilities.setText(abilities);
+                final String types = information.split("\\.")[1];
                 Log.e(Constants.TAG, types);
-                textViewAbilities.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        textViewAbilities.setText(abilities);
-                    }
-                });
-                textViewTypes.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        textViewTypes.setText(types);
-                    }
-                });
+                textViewTypes.setText(types);
+//                Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(imageView);
+
+//                textViewAbilities.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        textViewAbilities.setText(abilities);
+//                    }
+//                });
+//                textViewTypes.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        textViewTypes.setText(types);
+//                    }
+//                });
 
             }
 
